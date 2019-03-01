@@ -60,7 +60,7 @@ function svelteCommon(options = {}) {
 		dev       : true,
 		// see: https://github.com/Rich-Harris/svelte-preprocessor-demo
 		preprocess: themesPreprocess(
-			path.resolve('./src/main/styles/themes.scss'),
+			path.resolve('./src/styles/themes.scss'),
 			sveltePreprocess,
 			{
 				lang: 'scss'
@@ -85,8 +85,8 @@ module.exports = {
 		})
 	},
 	postCss: (options = {}) => postcss(postcssCommon({
-		// sourceMap: false, // 'inline',
-		// extract  : 'static/styles.css',
+		sourceMap: false, // 'inline',
+		extract  : 'static/styles.css',
 		...options
 	})),
 	babel: (options = {}) => babel({

@@ -7,7 +7,69 @@
 
 	%sapper.base%
 
-	<link rel='stylesheet' href='global.css'>
+	<!-- region Polyfills -->
+
+	<!--Needed for IE11:-->
+	<!--https://modernizr.com/download?setclasses-->
+	<!--<script src="polyfills/modernizr-custom.js"></script>-->
+	<!--https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from#Polyfill-->
+	<!--<script src="polyfills/array-from-polyfill.js"></script>-->
+	<script src="polyfills/bundle.js"></script>
+	<!--https://github.com/lifaon74/url-polyfill-->
+	<!--<script src="polyfills/url-polyfill.min.js"></script>-->
+	<!--https://github.com/taylorhakes/promise-polyfill-->
+	<!--<script src="polyfills/promise-polyfill.min.js"></script>-->
+
+	<!--Needed for Android 4.4.4 KitKat WebView Chrome 33.0.0.0:-->
+	<!--https://github.com/github/fetch-->
+	<!--<script src="polyfills/fetch.iife.js"></script>-->
+
+	<!--Possibly needed for IE11:-->
+	<!--<script src="es5-shim.min.js"></script>-->
+	<!--<script src="es6-shim.min.js"></script>-->
+
+	<script>
+		(function () {
+			// eslint-disable-next-line no-eval
+			var oldEval = window.eval;
+			// eslint-disable-next-line no-eval
+			delete window.eval;
+			// eslint-disable-next-line no-eval
+			window.eval = function (str) {
+				if (str.indexOf('async function') >= 0) {
+					return oldEval.call(window, str);
+				}
+
+				try {
+					return oldEval.call(window, str);
+				} catch (ex) {
+					console.error(ex);
+					console.log(str);
+					throw ex;
+				}
+			};
+
+			function errorHandler(e) {
+				console.error([
+					'Unhandled rejection: ',
+					e.reason && e.reason.stack || e.stack || e.reason
+				].filter(function (o) {
+					return o;
+				}).join('\r\n'));
+			}
+
+			window.addEventListener('unhandledrejection', errorHandler);
+
+			window.onunhandledrejection = errorHandler;
+
+			window.onerror = errorHandler;
+		})();
+	</script>
+
+	<!-- endregion Polyfills -->
+
+	<link rel='stylesheet' href='styles.css'>
+	<!--<link rel='stylesheet' href='global.css'>-->
 	<link rel='manifest' href='manifest.json'>
 	<link rel='icon' type='image/png' href='favicon.png'>
 
@@ -20,7 +82,7 @@
 	     the current page has one -->
 	%sapper.head%
 </head>
-<body>
+<body class="theme-dark">
 	<!-- The application will be rendered inside this element,
 	     because `app/client.js` references it -->
 	<div id='sapper'>%sapper.html%</div>

@@ -1,17 +1,27 @@
-import sirv from 'sirv';
-import polka from 'polka';
-import compression from 'compression';
-import * as sapper from '../__sapper__/server.js';
+import sirv from 'sirv'
+// import polka from 'polka'
+import express from 'express'
+import compression from 'compression'
+import * as sapper from '../__sapper__/server.js'
 
-const { PORT, NODE_ENV } = process.env;
-const dev = NODE_ENV === 'development';
+const {PORT, NODE_ENV} = process.env
+const dev = NODE_ENV === 'development'
+// const isExport = process.env.npm_lifecycle_event === 'build:sapper:export'
+// if (isExport) {
+// 	console.log('Export mode')
+// }
 
-polka() // You can also use Express
+const server = express()
+server.disable('x-powered-by')
+server
 	.use(
-		compression({ threshold: 0 }),
-		sirv('static', { dev }),
+		'/sapper/page',
+		compression({threshold: 0}),
+		sirv('static', {dev}),
 		sapper.middleware()
 	)
 	.listen(PORT, err => {
-		if (err) console.log('error', err);
-	});
+		if (err) {
+			console.log('error', err)
+		}
+	})

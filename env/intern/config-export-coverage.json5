@@ -26,7 +26,7 @@
 					{
 						"port": 3000,
 						"inits": [
-							// ["/sapper/page", "dist/sapper/export/sapper/page"]
+							["/sapper/page", "dist/sapper/export/sapper/page"]
 						]
 					}
 				]

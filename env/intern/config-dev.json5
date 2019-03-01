@@ -1,0 +1,53 @@
+{
+	"environments": [
+		{
+			"browserName": "chrome",
+			"version": "33",
+			"fixSessionCapabilities": "no-detect", // improve performance
+			"chromeOptions": {
+				"args": [
+					"--no-sandbox",
+					"--headless",
+					"--incognito",
+					"--unsafely-treat-insecure-origin-as-secure=http://192.168.0.101:3000",
+					"--unsafety-treat-insecure-origin-as-secure=http://192.168.0.101:3000"
+				]
+			}
+		},
+		{
+			"browserName": "chrome",
+			"version": "44",
+			"fixSessionCapabilities": "no-detect",
+			"chromeOptions": {
+				"args": [
+					"--no-sandbox",
+					"--headless",
+					"--incognito",
+					"--unsafely-treat-insecure-origin-as-secure=http://192.168.0.101:3000",
+					"--unsafety-treat-insecure-origin-as-secure=http://192.168.0.101:3000"
+				]
+			}
+		},
+		{
+			"browserName": "chrome",
+			"version": "52",
+			"fixSessionCapabilities": "no-detect",
+			"chromeOptions": {
+				"args": [
+					"--no-sandbox",
+					"--headless",
+					"--incognito",
+					"--unsafely-treat-insecure-origin-as-secure=http://192.168.0.101:3000",
+					"--unsafety-treat-insecure-origin-as-secure=http://192.168.0.101:3000"
+				]
+			}
+		},
+		{
+			"browserName": "firefox"
+		},
+		{
+			"browserName": "opera",
+			"operaOptions": {"binary": "/usr/bin/opera"}
+		}
+	],
+}
