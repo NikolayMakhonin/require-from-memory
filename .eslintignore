@@ -3,3 +3,5 @@ tmp
 dist
 _trash
 __sapper__
+**/polyfills/**
+env/polyfill/bundle.js

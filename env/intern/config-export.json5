@@ -1,0 +1,18 @@
+{
+	"plugins": [
+		"env/intern/register-intern.js",
+		{
+			"script": "env/intern/modules/intern-express/index.js",
+			"options": {
+				"servers": [
+					{
+						"port": 3000,
+						"inits": [
+							 // ["/sapper/page", "dist/sapper/export/sapper/page"]
+						]
+					}
+				]
+			}
+		}
+	]
+}

@@ -1,10 +1,9 @@
 module.exports = {
 	"presets": [
 		[
-			"@babel/preset-env",
-			{
-				"targets": {
-					"node": "8.6.0"
+			'@babel/preset-env', {
+				targets: {
+					chrome: '30'
 				}
 			}
 		]

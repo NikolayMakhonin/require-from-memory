@@ -1,0 +1,60 @@
+# Download selenoid configuration manager
+# Docs: https://aerokube.com/cm/latest/
+curl -s https://aerokube.com/cm/bash | bash
+
+# Download browser images and auto configure selenoid
+# Browsers stats: http://gs.statcounter.com/browser-version-market-share#monthly-201811-201901-bar
+./cm selenoid configure --browsers "chrome:52.0;firefox:52.0;opera:56.0;" --vnc
+
+# Download custom browsers for testing Android WebViews:
+# Android - 4.4.4 / API 19 ==> Chromium 33.0.1750.170 / Driver 2.10
+# Android - 5.0.0 / API 21 ==> Chromium 37.0.2062.99 / Driver 2.12
+# Android - 5.1.0 / API 22 ==> Chromium 39.0.2171.99 / Driver 2.14
+# Android - 6.0.0 / API 23 ==> Chromium 44.0.2403.119 / Driver 2.20
+
+docker pull nikolaymakhonin/selenoid-chromium:33.0
+docker pull nikolaymakhonin/selenoid-chromium:37.0
+docker pull nikolaymakhonin/selenoid-chromium:39.0
+docker pull nikolaymakhonin/selenoid-chromium:44.0
+
+# Add chromium browsers to selenoid config file:
+# .aerokube/selenoid/browsers.json
+
+            "33.0": {
+                "image": "nikolaymakhonin/selenoid-chromium:33.0",
+                "port": "4444",
+                "path": "/"
+            },
+            "37.0": {
+                "image": "nikolaymakhonin/selenoid-chromium:37.0",
+                "port": "4444",
+                "path": "/"
+            },
+            "39.0": {
+                "image": "nikolaymakhonin/selenoid-chromium:39.0",
+                "port": "4444",
+                "path": "/"
+            },
+            "44.0": {
+                "image": "nikolaymakhonin/selenoid-chromium:44.0",
+                "port": "4444",
+                "path": "/"
+            },
+
+# Start selenoid:
+./cm selenoid start
+
+# Install selenoid-ui:
+# Docs: https://github.com/aerokube/selenoid-ui
+
+docker run -d --name selenoid-ui  \
+    --link selenoid               \
+    -p 8080:8080                  \
+    aerokube/selenoid-ui --selenoid-uri=http://selenoid:4444
+
+# See the selenoid status on this page:
+# http://localhost:8080
+# Indicators SSE and Selenoid should be green
+
+# See also Opera bug fix:
+# https://aerokube.com/selenoid/latest/#_opera

@@ -1,0 +1,11 @@
+DirectoryIndex index.html
+
+Authtype Basic
+
+AuthName "balda"
+AuthUserFile /home/otoka112/.htpasswds/balda
+Require valid-user
+
+<FilesMatch ".+\.(json|js)$">
+    Require all granted
+</FilesMatch>

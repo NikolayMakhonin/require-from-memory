@@ -5,15 +5,7 @@ const fileOutput = files[1]
 
 const rollup = require('rollup')
 const {createFilter} = require('rollup-pluginutils')
-
-// const globals = require('rollup-plugin-node-globals')
-// const builtins = require('rollup-plugin-node-builtins')
-const babel = require('rollup-plugin-babel')
-// const {terser} = require('rollup-plugin-terser')
-
-// const { eslint } = require('rollup-plugin-eslint')
-const nodeResolve = require('rollup-plugin-node-resolve')
-const commonjs = require('rollup-plugin-commonjs')
+const rollupPlugins = require('./rollup/plugins')
 
 function addHeaderFooterPlugin(options = {}) {
 	const filter = createFilter(options.include, options.exclude)
@@ -53,22 +45,12 @@ async function doRollup(file) {
 	const bundle = await rollup.rollup({
 		input  : file,
 		plugins: [
-			// globals(),
-			// builtins(),
-			babel({
-				runtimeHelpers: true
-			}),
-			nodeResolve(),
-			// nodeResolve({
-			// 	jsnext: true,
-			// 	main: true,
-			// 	browser: true,
-			// 	preferBuiltins: true,
-			// }),
-			commonjs(),
-			babel({
-				runtimeHelpers: true
-			}),
+			// rollupPlugins.globals(),
+			// rollupPlugins.builtins(),
+			rollupPlugins.babel(),
+			rollupPlugins.nodeResolve(),
+			rollupPlugins.commonjs(),
+			rollupPlugins.babel(),
 			addHeaderFooterPlugin({
 				include: file,
 				header : markStartEnd,
@@ -78,25 +60,16 @@ async function doRollup(file) {
 				header: markStartEnd,
 				footer: markStartEnd
 			}),
-			// terser({
-			// 	mangle   : false,
-			// 	sourcemap: false,
-			// 	// {
-			// 	// 	content: 'inline',
-			// 	// 	url: 'inline'
-			// 	// },
-			// 	output   : {
-			// 		beautify: true
-			// 	}
-			// })
+			rollupPlugins.terser(),
+			rollupPlugins.prettier()
 		]
 	})
 
-	const {code} = await bundle.generate({
+	const {code} = (await bundle.generate({
 		format   : 'cjs',
 		sourcemap: false,
 		exports  : 'named'
-	})
+	})).output[0]
 
 	return code
 }
@@ -128,7 +101,7 @@ if (!relativeOutput.match(/^tmp[\\/]/)) {
 console.log(`js watcher transform: ${relativeInput} => ${relativeOutput}`)
 
 async function transform(fileInput, fileOutput) {
-	let content = await doRollup(fileInput)
+	const content = await doRollup(fileInput)
 
 	if (!content) {
 		throw new Error('transformed content is empty')
@@ -137,9 +110,6 @@ async function transform(fileInput, fileOutput) {
 	const fs = require('fs')
 	const fse = require('fs-extra')
 	const path = require('path')
-	const beautify = require('js-beautify').js
-
-	content = beautify(content)
 
 	const dirOutput = path.dirname(fileOutput)
 	if (!await fse.pathExists(dirOutput)) {
@@ -157,4 +127,7 @@ async function transform(fileInput, fileOutput) {
 transform(fileInput, fileOutput)
 	.then(() => {
 		console.log('js watcher transform: successful!')
+	})
+	.catch(err => {
+		console.error(err)
 	})

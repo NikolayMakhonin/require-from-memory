@@ -1,0 +1,16 @@
+{
+	"env": {
+		"mocha": false,
+		"node": true
+	},
+	"globals": {
+		"intern": true,
+		"assert": false,
+		"expect": false,
+		"pathToUrl": true
+	},
+	"rules": {
+		"object-shorthand": "off",
+		"no-shadow": ["error", { "allow": ["assert"] }]
+	}
+}

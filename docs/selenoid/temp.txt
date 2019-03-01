@@ -1,0 +1,80 @@
+docker exec -u root -it 2006ab1338b7d9765fddc383ccbadd16e68784fe33b6756f12bac4b30a5eb2a7 bash
+docker run --rm -d -p 4446:4446 -p 5900:5900 -e ENABLE_VNC=true --privileged selenoid/vnc_chrome:33.0
+
+# List of containers
+docker container ls -a
+
+# List of images
+docker image ls
+# Remove image
+docker image rm 75835a67d134 2a4cca5ac898
+docker image rm 75835a67d134 2a4cca5ac898 -f
+
+# TCP Port info
+sudo netstat -tpln | grep "tcp"
+
+# Docker restart
+sudo service docker restart
+
+# Use tar archive for preserve permissions
+
+# List of permissions
+stat -c "%a %n" *
+
+# Files
+sudo chmod -R 644 .
+
+# Directories
+sudo find . -type d -exec chmod 755 {} +
+
+sudo chmod 4755 opt/google/chrome/chrome-sandbox
+sudo chmod 755 opt/google/chrome/chrome
+sudo chmod 755 opt/google/chrome/google-chrome
+sudo chmod 755 opt/google/chrome/nacl_helper
+sudo chmod 755 opt/google/chrome/nacl_helper_bootstrap
+sudo chmod 755 opt/google/chrome/xdg-mime
+sudo chmod 755 opt/google/chrome/xdg-settings
+sudo chmod 777 usr/bin/google-chrome-stable
+
+# Creage deb package
+
+dpkg-deb --build chromium33
+
+mv chromium33.deb google-chrome-stable_33.0.1750.170-1+aerokube0_amd64.deb
+
+./automate_chrome.sh ~/dev/browsers/google-chrome-stable_33.0.1750.170-1+aerokube0_amd64.deb 2.10 33.0
+./automate_chrome.sh ~/dev/browsers/google-chrome-stable_37.0.2062.99-1+aerokube0_amd64.deb 2.12 37.0
+./automate_chrome.sh ~/dev/browsers/google-chrome-stable_39.0.2171.99-1+aerokube0_amd64.deb 2.14 39.0
+./automate_chrome.sh ~/dev/browsers/google-chrome-stable_44.0.2403.119-1+aerokube0_amd64.deb 2.20 44.0
+
+# Run selenoid
+
+./cm selenoid configure --browsers "nikolaymakhonin/selenoid-chromium:33.0;nikolaymakhonin/selenoid-chromium:37.0;nikolaymakhonin/selenoid-chromium:39.0;nikolaymakhonin/selenoid-chromium:44.0;chrome:72.0;opera:58.0;firefox:65.0" --last-versions 1 --vnc
+./cm selenoid start --args "-timeout 3m -service-startup-timeout 3m -session-attempt-timeout 3m"
+
+# browsers.json
+
+"33.0": {
+	"image": "selenoid/vnc_chrome:33.0",
+	"port": "4444",
+	"path": "/"
+},
+"37.0": {
+	"image": "selenoid/vnc_chrome:37.0",
+	"port": "4444",
+	"path": "/"
+},
+"39.0": {
+	"image": "selenoid/vnc_chrome:39.0",
+	"port": "4444",
+	"path": "/"
+},
+"44.0": {
+	"image": "selenoid/vnc_chrome:44.0",
+	"port": "4444",
+	"path": "/"
+},
+
+
+docker tag selenoid/vnc_chrome:44.0 nikolaymakhonin/selenoid-chromium:44.0
+docker push nikolaymakhonin/selenoid-chromium:44.0

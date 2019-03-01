@@ -1,0 +1,33 @@
+* Chrome 48 - Uncaught (in promise) NotSupportedError (serviceWorker): Only secure origins are allowed
+
+--unsafely-treat-insecure-origin-as-secure=http://192.168.0.101:3000
+
+* Chrome 44 - Uncaught (in promise) NotSupportedError (serviceWorker): Only secure origins are allowed
+
+See: https://bugs.chromium.org/p/chromium/issues/detail?id=441605#c60
+Chromium bug - use unsafety instead unsafely:
+
+--unsafety-treat-insecure-origin-as-secure=http://192.168.0.101:3000
+
+==== Chrome flags ====
+// Fix this bug: https://stackoverflow.com/questions/41373166/why-am-i-seeing-error-only-secure-origins-are-allowed-for-my-service-worker
+--unsafely-treat-insecure-origin-as-secure=http://192.168.0.101:3000
+--unsafety-treat-insecure-origin-as-secure=http://192.168.0.101:3000
+
+"--allow-insecure-localhost http://192.168.0.101:3000",
+"--disable-web-security",
+"--allow-cross-origin-auth-prompt",
+"--disable-site-isolation-trials",
+"--allow-running-insecure-content",
+"--reduce-security-for-testing"
+"--user-data-dir=/tmp/foo",
+"--disable-gpu",
+"--enable-precision-memory-info",
+"--debug-print",
+"--enable-crash-reporter-for-testing",
+"--log-level 0",
+"--dns-log-details",
+"--enable-logging",
+"--enable-stats-table" // StatsTable
+
+
