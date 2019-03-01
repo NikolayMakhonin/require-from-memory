@@ -1,0 +1,14 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Coverage Mocha" type="mocha-javascript-test-runner">
+    <node-interpreter>$Node2$/node</node-interpreter>
+    <node-options>--max-old-space-size=4096</node-options>
+    <mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
+    <working-directory>$PROJECT_DIR$</working-directory>
+    <pass-parent-env>true</pass-parent-env>
+    <ui>bdd</ui>
+    <extra-mocha-options>--opts ./env/mocha/mocha.babel.opts</extra-mocha-options>
+    <test-kind>PATTERN</test-kind>
+    <test-pattern>./{src,dist/{js,mjs}}/test/tests/{common,node}/**/*.*</test-pattern>
+    <method v="2" />
+  </configuration>
+</component>

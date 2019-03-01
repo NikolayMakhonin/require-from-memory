@@ -1,0 +1,415 @@
+## TEXT
+* text=auto
+* text eol=lf
+
+## ------------- BINARY FILES ----------------- ##
+
+## GRAPHICS
+*.png binary
+*.ai binary
+*.bmp binary
+*.eps binary
+*.gif binary
+*.jng binary
+*.jp2 binary
+*.jpg binary
+*.jpeg binary
+*.jpx binary
+*.jxr binary
+*.pdf binary
+*.psb binary
+*.psd binary
+*.svgz binary
+*.tif binary
+*.tiff binary
+*.wbmp binary
+*.webp binary
+*.t3d binary
+*.t3x binary
+*.ani binary
+*.apng binary
+*.art binary
+*.bpg binary
+*.bsv binary
+*.bw binary
+*.cdf binary
+*.cin binary
+*.cpc binary
+*.cpt binary
+*.crw binary
+*.cur binary
+*.dds binary
+*.dng binary
+*.dpx binary
+*.ecw binary
+*.exr binary
+*.fit binary
+*.fits binary
+*.flc binary
+*.fli binary
+*.flif binary
+*.fpx binary
+*.fts binary
+*.hdr binary
+*.ico binary
+*.ics binary
+*.ids binary
+*.iff binary
+*.int binary
+*.inta binary
+*.jbig binary
+*.jbg binary
+*.jfi binary
+*.jfif binary
+*.jif binary
+*.jpe binary
+*.jpf binary
+*.jpm binary
+*.kra binary
+*.lbm binary
+*.nrrd binary
+*.ora binary
+*.pam binary
+*.pbm binary
+*.pct binary
+*.pcx binary
+*.pgf binary
+*.pic binary
+*.pict binary
+*.pgm binary
+*.pnm binary
+*.ppm binary
+*.psp binary
+*.qtvr binary
+*.ras binary
+*.rgb binary
+*.rgba binary
+*.raw binary
+*.sgi binary
+*.sun binary
+*.ufo binary
+*.ufp binary
+*.xbm binary
+*.xcf binary
+*.xwd binary
+*.anim binary
+*.cubemap binary
+*.fbx binary
+*.flare binary
+*.guiskin binary
+*.mask binary
+*.mat binary
+*.physicMaterial binary
+*.tga binary
+
+## AUDIO
+*.kar binary
+*.m4a binary
+*.mid binary
+*.midi binary
+*.mp3 binary
+*.ogg binary
+*.ra binary
+*.aa binary
+*.aac binary
+*.aax binary
+*.act binary
+*.aiff binary
+*.amr binary
+*.ape binary
+*.au binary
+*.awb binary
+*.dct binary
+*.dss binary
+*.flac binary
+*.gsm binary
+*.iklax binary
+*.ivs binary
+*.m4b binary
+*.mmf binary
+*.mogg binary
+*.mpc binary
+*.msv binary
+*.oga binary
+*.opus binary
+*.tta binary
+*.vox binary
+*.wav binary
+*.wma binary
+*.wv binary
+*.mpa binary
+
+## VIDEO
+*.3gpp binary
+*.3gp binary
+*.as binary
+*.asf binary
+*.asx binary
+*.fla binary
+*.flv binary
+*.m4v binary
+*.mng binary
+*.mov binary
+*.mp4 binary
+*.mpeg binary
+*.mpg binary
+*.swc binary
+*.swf binary
+*.webm binary
+*.mkv binary
+*.m4p binary
+*.ogv binary
+*.3g2 binary
+*.amv binary
+*.avi binary
+*.drc binary
+*.f4a binary
+*.f4b binary
+*.f4p binary
+*.f4v binary
+*.gifv binary
+*.m2j binary
+*.m2v binary
+*.mpe binary
+*.mpv binary
+*.mxf binary
+*.nsf binary
+*.qt binary
+*.rm binary
+*.rmvb binary
+*.roq binary
+*.svi binary
+*.vob binary
+*.wmv binary
+*.yuv binary
+*.ogx binary
+
+## ARCHIVES
+*.7z binary
+*.gz binary
+*.rar binary
+*.tar binary
+*.zip binary
+*.bz2 binary
+*.cab binary
+*.tgz binary
+*.ace binary
+*.apk binary
+*.b1 binary
+*.bin binary
+*.car binary
+*.cfs binary
+*.dar binary
+*.ear binary
+*.gzip binary
+*.ipa binary
+*.kgb binary
+*.lz binary
+*.lzma binary
+*.lzo binary
+*.pak binary
+*.pea binary
+*.pim binary
+*.rev binary
+*.rz binary
+*.s7z binary
+*.shar binary
+*.sitx binary
+*.sqx binary
+*.sz binary
+*.tbz2 binary
+*.tlz binary
+*.war binary
+*.xz binary
+*.z binary
+*.zipx binary
+*.zz binary
+
+## DISK IMAGES
+*.dmg binary
+*.iso binary
+*.partimg binary
+*.wim binary
+
+## FONTS
+*.ttf binary
+*.eot binary
+*.otf binary
+*.woff binary
+*.woff2 binary
+*.ps binary
+
+## EXECUTABLES
+*.pyc binary
+*.dll binary
+*.exe binary
+*.pdb binary
+*.jar binary
+*.so binary
+*.msi binary
+*.out binary
+*.app binary
+*.com binary
+
+## DATA
+*.dat binary
+*.data binary
+
+## DOCS
+*.rtf binary
+*.doc binary
+*.docx binary
+
+## OTHER
+*.snk binary
+*.acc binary
+*.eof binary
+*.gpg binary
+*.icns binary
+*.pgp binary
+*.rpm binary
+*.controller binary
+*.db binary
+*.dex binary
+*.dylib binary
+*.ht binary
+*.keystore binary
+*.mb binary
+*.mdb binary
+*.mwb binary
+*.pyd binary
+*.pyo binary
+*.unitypackage binary
+*.unityPackage binary
+
+## ------------- TEXT FILES ----------------- ##
+
+## SOURCE CODE
+
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.coffee text eol=lf
+*.cs text eol=lf
+*.css text eol=lf
+*.htm text eol=lf
+*.html text eol=lf
+*.inc text eol=lf
+*.ini text eol=lf
+*.java text eol=lf
+*.js text eol=lf
+*.jsp text eol=lf
+*.jspf text eol=lf
+*.properties text eol=lf
+*.json text eol=lf
+*.jsx text eol=lf
+*.less text eol=lf
+*.php text eol=lf
+*.pl text eol=lf
+*.ps1 text eol=crlf
+*.PS1 text eol=crlf
+*.py text eol=lf
+*.py3 text eol=lf
+*.pyw text eol=lf
+*.pyx text eol=lf
+*.rb text eol=lf
+*.sass text eol=lf
+*.scm text eol=lf
+*.scss text eol=lf
+*.sh text eol=lf
+*.sql text eol=lf
+*.styl text eol=lf
+*.tf text eol=lf
+*.ts text eol=lf
+*.xhtml text eol=lf
+*.xml text eol=lf
+Dockerfile text eol=lf
+
+## DOCUMENTATION
+*.markdown text eol=lf
+*.md text eol=lf
+*.mdwn text eol=lf
+*.mdown text eol=lf
+*.mkd text eol=lf
+*.mkdn text eol=lf
+*.mdtxt text eol=lf
+*.mdtext text eol=lf
+*.txt text eol=lf
+AUTHORS text eol=lf
+CHANGELOG text eol=lf
+CHANGES text eol=lf
+CONTRIBUTING text eol=lf
+COPYING text eol=lf
+INSTALL text eol=lf
+license text eol=lf
+LICENSE text eol=lf
+NEWS text eol=lf
+readme text eol=lf
+*README* text eol=lf
+TODO text eol=lf
+
+## TEMPLATES
+*.dot text eol=lf
+*.ejs text eol=lf
+*.haml text eol=lf
+*.handlebars text eol=lf
+*.hbs text eol=lf
+*.hbt text eol=lf
+*.j2 text eol=lf
+*.jade text eol=lf
+*.latte text eol=lf
+*.mustache text eol=lf
+*.phtml text eol=lf
+*.templ text eol=lf
+*.tmpl text eol=lf
+
+## LINTERS
+.csslintrc text eol=lf
+.eslintrc text eol=lf
+.jscsrc text eol=lf
+.jshintignore text eol=lf
+.jshintrc text eol=lf
+.stylelintrc text eol=lf
+
+## CONFIGS
+*.bowerrc text eol=lf
+*.cfg text eol=lf
+*.cnf text eol=lf
+*.conf text eol=lf
+*.config text eol=lf
+*.npmignore text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+.editorconfig text eol=lf
+.gitattributes text eol=lf
+.gitconfig text eol=lf
+.gitignore text eol=lf
+.htaccess text eol=lf
+.htaccess text eol=lf
+ansible-hosts text eol=lf
+Makefile text eol=lf
+makefile text eol=lf
+Makefile* text eol=lf
+makefile* text eol=lf
+
+## Visual Studio
+*.sln text eol=crlf
+*.csproj text eol=crlf
+*.vbproj text eol=crlf
+*.fsproj text eol=crlf
+*.dbproj text eol=crlf
+*.vcxproj text eol=crlf
+*.vcxitems text eol=crlf
+*.props text eol=crlf
+*.filters text eol=crlf
+
+## HEROKU
+Procfile text
+.slugignore text
+
+## DATA
+*.csv text eol=crlf
+*.tsv text eol=lf
+
+## OTHER
+*.meta text eol=lf
+*.vspscc text eol=lf
