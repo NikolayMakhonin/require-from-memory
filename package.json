@@ -2,13 +2,23 @@
   "name": "TODO",
   "version": "0.0.1",
   "description": "TODO",
+  "bin": {
+    "TODO": "dist/js/main/cli.js"
+  },
   "author": "TODO",
   "homepage": "TODO",
   "bugs": {
     "url": "TODO"
   },
   "license": "CC0-1.0",
-  "keywords": [],
+  "keywords": [
+    "cli-app",
+    "cli",
+    "command-line",
+    "cmd",
+    "terminal",
+    "console"
+  ],
   "files": [
     "dist/**",
     "env/mocha/*"
@@ -70,6 +80,7 @@
     "istanbul-combine": "^0.3.0",
     "js-beautify": "^1.8.9",
     "mocha": "^5.2.0",
+    "mock-cli": "^0.1.2",
     "ncat": "^2.0.5",
     "nyc": "^13.3.0",
     "rollup": "^1.2.2",
@@ -78,11 +89,11 @@
     "rollup-plugin-eslint": "^5.0.0",
     "rollup-plugin-istanbul": "^2.0.1",
     "rollup-plugin-node-resolve": "^4.0.0",
-    "rollup-plugin-terser": "^4.0.4",
-    "rollup-pluginutils": "^2.4.1",
+    "rollup-pluginutils": "^2.3.3",
     "shx": "^0.3.2"
   },
   "dependencies": {
-    "@babel/runtime": "^7.3.1"
+    "@babel/runtime": "^7.3.1",
+    "yargs": "^12.0.5"
   }
 }

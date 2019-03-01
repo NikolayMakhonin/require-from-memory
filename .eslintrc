@@ -12,5 +12,9 @@
 		"sourceType": "module",
 		"allowImportExportEverywhere": false,
 		"codeFrame": true
+	},
+	
+	"rules": {
+		"no-process-env" : "off"
 	}
 }
