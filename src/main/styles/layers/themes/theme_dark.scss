@@ -1,0 +1,11 @@
+:global(.theme-dark) {
+	@if ($component == 'TODO/src/routes/index') {
+		h1 {
+			color: #00f;
+		}
+	} @else if ($component == 'component 2') {
+		h1 {
+			color: #f00;
+		}
+	}
+}

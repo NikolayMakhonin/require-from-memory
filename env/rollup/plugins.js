@@ -1,3 +1,4 @@
+const path = require('path')
 const babel = require('rollup-plugin-babel')
 const {terser} = require('rollup-plugin-terser')
 const istanbul = require('rollup-plugin-istanbul')
@@ -10,6 +11,10 @@ const prettier = require('rollup-plugin-prettier')
 const postcss = require('rollup-plugin-postcss')
 const postcssImport = require('postcss-import')
 const autoprefixer = require('autoprefixer')
+
+const svelte  = require('rollup-plugin-svelte')
+const preprocess = require('svelte-preprocess')
+const themesPreprocess = require('svelte-themes-preprocess').default
 
 function postcssCommon(options = {}) {
 	return {
@@ -42,8 +47,43 @@ function postcssCommon(options = {}) {
 	}
 }
 
+function svelteCommon(options = {}) {
+	const sveltePreprocess = preprocess({
+		scss   : true,
+		pug    : true,
+		postcss: postcssCommon({
+
+		})
+	})
+
+	return svelte({
+		dev       : true,
+		// see: https://github.com/Rich-Harris/svelte-preprocessor-demo
+		preprocess: themesPreprocess(
+			path.resolve('./src/main/styles/themes.scss'),
+			sveltePreprocess,
+			{
+				lang: 'scss'
+			}
+		),
+		...options,
+	})
+}
+
 
 module.exports = {
+	svelte: {
+		common: svelteCommon,
+		client: (options = {}) => svelteCommon({
+			hydratable: true,
+			emitCss   : true,
+			...options
+		}),
+		server: (options = {}) => svelteCommon({
+			generate: 'ssr',
+			...options
+		})
+	},
 	postCss: (options = {}) => postcss(postcssCommon({
 		// sourceMap: false, // 'inline',
 		// extract  : 'static/styles.css',
@@ -52,6 +92,8 @@ module.exports = {
 	babel: (options = {}) => babel({
 		...require('../../.babelrc'),
 		runtimeHelpers: true,
+		extensions    : ['.js', '.html', '.svelte'],
+		exclude       : ['node_modules/@babel/**'],
 		...options
 	}),
 	istanbul: (options = {}) => istanbul({

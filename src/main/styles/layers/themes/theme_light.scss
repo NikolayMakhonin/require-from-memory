@@ -1,0 +1,11 @@
+:global(.theme-light) {
+	@if ($component == 'component 1') {
+		h1 {
+			color: #0ff;
+		}
+	} @else if ($component == 'component 2') {
+		h1 {
+			color: #ff0;
+		}
+	}
+}
