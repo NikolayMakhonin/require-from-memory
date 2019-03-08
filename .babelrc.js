@@ -21,6 +21,8 @@ module.exports = {
 		
 		["@babel/plugin-proposal-class-properties", { "loose": true }],
 		"@babel/plugin-transform-parameters",
-		"@babel/plugin-transform-async-to-generator"
+		"@babel/plugin-transform-async-to-generator",
+		"@babel/plugin-transform-for-of",
+		//"@babel/plugin-transform-regenerator"
 	]
 }

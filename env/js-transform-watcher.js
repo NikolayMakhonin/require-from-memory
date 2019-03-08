@@ -92,13 +92,13 @@ async function doRollup(file) {
 		]
 	})
 
-	const {code} = await bundle.generate({
+	const result = await bundle.generate({
 		format   : 'cjs',
 		sourcemap: false,
 		exports  : 'named'
 	})
 
-	return code
+	return result.output[0].code
 }
 
 function getEqualStartLength(s1, s2) {
