@@ -16,6 +16,7 @@ describe('main > main', function () {
   const mockFileEs6 = './assets/mock-dir/mock.dir/mock-module-es6.js';
   let mockContent;
   let mockContentEs6;
+  const isWin = process.platform === 'win32';
 
   function readContent(filePath) {
     return new Promise((resolve, reject) => _fs.default.readFile(_path.default.resolve(__dirname, filePath), function read(err, data) {
@@ -66,7 +67,11 @@ describe('main > main', function () {
     assert.ok(subModule.mocha);
   }
 
-  const filePaths = [_path.default.resolve(__dirname, './assets/xx/yy/module.js'), _path.default.resolve(__dirname, './assets/module.js/module.js/module.js'), _path.default.resolve(__dirname, mockFile), _path.default.resolve(__dirname, mockFileEs6)];
+  let filePaths = [_path.default.resolve(__dirname, './assets/xx/yy/module.js'), _path.default.resolve(__dirname, './assets/module.js/module.js/module.js'), _path.default.resolve(__dirname, mockFile), _path.default.resolve(__dirname, mockFileEs6)];
+
+  if (isWin) {
+    filePaths = filePaths.flatMap(o => [o, o.replace('/', '\\')]);
+  }
 
   function testMock(filePath) {
     console.log(`Test mock: ${filePath}`);
@@ -78,7 +83,7 @@ describe('main > main', function () {
   }
 
   it('require mock', function () {
-    for (const filePath of filePaths.flatMap(o => [o, o.replace('/', '\\')])) {
+    for (const filePath of filePaths) {
       testMock(filePath);
     }
   });

@@ -11,6 +11,7 @@ describe('main > main', function () {
   var mockFileEs6 = './assets/mock-dir/mock.dir/mock-module-es6.js';
   var mockContent;
   var mockContentEs6;
+  var isWin = process.platform === 'win32';
 
   function readContent(filePath) {
     return new Promise(function (resolve, reject) {
@@ -87,6 +88,12 @@ describe('main > main', function () {
 
   var filePaths = [path.resolve(__dirname, './assets/xx/yy/module.js'), path.resolve(__dirname, './assets/module.js/module.js/module.js'), path.resolve(__dirname, mockFile), path.resolve(__dirname, mockFileEs6)];
 
+  if (isWin) {
+    filePaths = filePaths.flatMap(function (o) {
+      return [o, o.replace('/', '\\')];
+    });
+  }
+
   function testMock(filePath) {
     console.log("Test mock: ".concat(filePath));
     var result = requireFromString(mockContent, filePath);
@@ -102,9 +109,7 @@ describe('main > main', function () {
     var _iteratorError = undefined;
 
     try {
-      for (var _iterator = filePaths.flatMap(function (o) {
-        return [o, o.replace('/', '\\')];
-      })[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      for (var _iterator = filePaths[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
         var filePath = _step.value;
         testMock(filePath);
       }
