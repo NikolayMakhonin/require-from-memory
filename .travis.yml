@@ -4,6 +4,8 @@ language: node_js
 
 os:
   - "osx"
+  - "linux"
+  - "windows"
 
 node_js:
   - "11.5.0"

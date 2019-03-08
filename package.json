@@ -1,14 +1,22 @@
 {
-  "name": "TODO",
+  "name": "require-from-memory",
   "version": "0.0.1",
-  "description": "TODO",
-  "author": "TODO",
-  "homepage": "TODO",
+  "description": "NodeJs require with mock content and file name and support babel, pirates, etc",
+  "author": "Nikolay Makhonin",
+  "homepage": "https://github.com/NikolayMakhonin/require-from-memory",
   "bugs": {
-    "url": "TODO"
+    "url": "https://github.com/NikolayMakhonin/require-from-memory/issues"
   },
   "license": "CC0-1.0",
-  "keywords": [],
+  "keywords": [
+    "require",
+    "mock",
+    "string",
+    "memory",
+    "module",
+    "load",
+    "cross-platform"
+  ],
   "files": [
     "dist/**",
     "env/mocha/*"
