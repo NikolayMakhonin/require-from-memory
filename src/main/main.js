@@ -20,7 +20,7 @@ function isRelativePath(requirePath) {
 // see also: https://stackoverflow.com/a/19682189/5221762
 // see also: https://github.com/floatdrop/require-from-string/blob/master/index.js
 // see also: https://github.com/ariporad/pirates/blob/master/src/index.js
-export function requireFromString(code, filename) {
+export function requireFromString(code, filename, fileExtension) {
 	if (!filename) {
 		filename = ''
 	}
@@ -61,11 +61,21 @@ export function requireFromString(code, filename) {
 	// const m = new Module(filename, parent)
 	// m.filename = filename
 
+	const ext = path.extname(filename)
+	let oldLoader
+	if (fileExtension) {
+		oldLoader = Module._extensions[ext]
+	}
+
 	const findPath = Module._findPath
 	const resolveFilename = Module._resolveFilename
 	const readFileSync = fs.readFileSync
 	const statSync = fs.statSync
 	try {
+		if (fileExtension) {
+			Module._extensions[ext] = Module._extensions[fileExtension]
+		}
+
 		Module._findPath = (request, paths, ...others) => {
 			if (request === filename) {
 				return filename
@@ -119,6 +129,13 @@ export function requireFromString(code, filename) {
 		delete require.cache[filename]
 		return require(filename)
 	} finally {
+		if (fileExtension) {
+			if (oldLoader) {
+				Module._extensions[ext] = oldLoader
+			} else {
+				delete Module._extensions[ext]
+			}
+		}
 		Module._resolveFilename = resolveFilename
 		fs.readFileSync = readFileSync
 		fs.statSync = statSync

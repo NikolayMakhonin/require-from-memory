@@ -66,6 +66,7 @@ describe('main > main', function () {
 		path.resolve(__dirname, './assets/xx/yy/module.js'),
 		path.resolve(__dirname, './assets/exist/dir/module.js'),
 		path.resolve(__dirname, './assets/exist/dir/cached-module.js'),
+		path.resolve(__dirname, './assets/exist/dir/not-standard-extension-module.qweqwe'),
 		path.resolve(__dirname, './assets/module.js/module.js/module.js'),
 		path.resolve(__dirname, mockFile),
 		path.resolve(__dirname, mockFileEs6)
@@ -78,18 +79,27 @@ describe('main > main', function () {
 		])
 	}
 
+	function testMockSingle(content, filePath, es6) {
+		const ext = path.extname(filePath)
+		let result
+		if (ext === '.js') {
+			result = requireFromString(content, filePath)
+		} else {
+			result = requireFromString(content, filePath, '.js')
+		}
+		checkResult(result, es6)
+	}
+
 	function testMock(filePath) {
 		require('./assets/exist/dir/cached-module')
 
 		console.log(`Test mock: ${filePath}`)
-		let result = requireFromString(mockContent, filePath)
-		checkResult(result)
+		testMockSingle(mockContent, filePath)
 
 		require('./assets/exist/dir/cached-module')
 
 		console.log(`Test mock es6: ${filePath}`)
-		result = requireFromString(mockContentEs6, filePath)
-		checkResult(result, true)
+		testMockSingle(mockContentEs6, filePath, true)
 	}
 
 	it('require mock', function () {
