@@ -14,7 +14,7 @@ var _path = _interopRequireDefault(require("path"));
 
 var _fs = _interopRequireDefault(require("fs"));
 
-/* eslint-disable global-require,no-sync,prefer-destructuring */
+/* eslint-disable global-require,no-sync,prefer-destructuring,object-property-newline */
 const Module = module.constructor.length > 1 ? module.constructor : _module.default;
 const CHAR_DOT = 46;
 const CHAR_FORWARD_SLASH = 47;
@@ -88,7 +88,26 @@ function requireFromString(code, filename) {
         }
       }
 
-      return findPath.apply(_fs.default, [request, paths, ...others]);
+      try {
+        const filePath = findPath.apply(_fs.default, [request, paths, ...others]);
+
+        if (!filePath) {
+          showErrorInfo(`Found filePath == ${filePath}`);
+        }
+
+        return filePath;
+      } catch (ex) {
+        showErrorInfo(ex.message);
+        throw ex;
+      }
+
+      function showErrorInfo(message) {
+        console.error(`Error in Module._findPath, input params:\r\n${JSON.stringify({
+          message,
+          request,
+          paths
+        }, null, 4)}`);
+      }
     }; // Module._resolveFilename = () => {
     // 	Module._resolveFilename = resolveFilename
     // 	return filename

@@ -68,8 +68,11 @@ describe('main > main', function () {
 	]
 
 	function testMock(filePath) {
+		console.log(`Test mock: ${filePath}`)
 		let result = requireFromString(mockContent, filePath)
 		checkResult(result)
+
+		console.log(`Test mock es6: ${filePath}`)
 		result = requireFromString(mockContentEs6, filePath)
 		checkResult(result, true)
 	}

@@ -69,8 +69,10 @@ describe('main > main', function () {
   const filePaths = [_path.default.resolve(__dirname, './assets/xx/yy/module.js'), _path.default.resolve(__dirname, './assets/module.js/module.js/module.js'), _path.default.resolve(__dirname, mockFile), _path.default.resolve(__dirname, mockFileEs6)];
 
   function testMock(filePath) {
+    console.log(`Test mock: ${filePath}`);
     let result = (0, _main.requireFromString)(mockContent, filePath);
     checkResult(result);
+    console.log(`Test mock es6: ${filePath}`);
     result = (0, _main.requireFromString)(mockContentEs6, filePath);
     checkResult(result, true);
   }

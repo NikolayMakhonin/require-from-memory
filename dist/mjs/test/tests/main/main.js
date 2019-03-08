@@ -88,8 +88,10 @@ describe('main > main', function () {
   var filePaths = [path.resolve(__dirname, './assets/xx/yy/module.js'), path.resolve(__dirname, './assets/module.js/module.js/module.js'), path.resolve(__dirname, mockFile), path.resolve(__dirname, mockFileEs6)];
 
   function testMock(filePath) {
+    console.log("Test mock: ".concat(filePath));
     var result = requireFromString(mockContent, filePath);
     checkResult(result);
+    console.log("Test mock es6: ".concat(filePath));
     result = requireFromString(mockContentEs6, filePath);
     checkResult(result, true);
   }

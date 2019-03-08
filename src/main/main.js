@@ -1,4 +1,4 @@
-/* eslint-disable global-require,no-sync,prefer-destructuring */
+/* eslint-disable global-require,no-sync,prefer-destructuring,object-property-newline */
 import BuiltinModule from 'module'
 const Module = module.constructor.length > 1 ? module.constructor : BuiltinModule
 import path from 'path'
@@ -79,7 +79,20 @@ export function requireFromString(code, filename) {
 				}
 			}
 
-			return findPath.apply(fs, [request, paths, ...others])
+			try {
+				const filePath = findPath.apply(fs, [request, paths, ...others])
+				if (!filePath) {
+					showErrorInfo(`Found filePath == ${filePath}`)
+				}
+				return filePath
+			} catch (ex) {
+				showErrorInfo(ex.message)
+				throw ex
+			}
+
+			function showErrorInfo(message) {
+				console.error(`Error in Module._findPath, input params:\r\n${JSON.stringify({message, request, paths}, null, 4)}`)
+			}
 		}
 
 		// Module._resolveFilename = () => {

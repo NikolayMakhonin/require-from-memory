@@ -1,4 +1,4 @@
-/* eslint-disable global-require,no-sync,prefer-destructuring */
+/* eslint-disable global-require,no-sync,prefer-destructuring,object-property-newline */
 import BuiltinModule from 'module';
 var Module = module.constructor.length > 1 ? module.constructor : BuiltinModule;
 import path from 'path';
@@ -74,11 +74,30 @@ export function requireFromString(code, filename) {
         }
       }
 
-      for (var _len = arguments.length, others = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
-        others[_key - 2] = arguments[_key];
+      try {
+        for (var _len = arguments.length, others = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+          others[_key - 2] = arguments[_key];
+        }
+
+        var filePath = findPath.apply(fs, [request, paths].concat(others));
+
+        if (!filePath) {
+          showErrorInfo("Found filePath == ".concat(filePath));
+        }
+
+        return filePath;
+      } catch (ex) {
+        showErrorInfo(ex.message);
+        throw ex;
       }
 
-      return findPath.apply(fs, [request, paths].concat(others));
+      function showErrorInfo(message) {
+        console.error("Error in Module._findPath, input params:\r\n".concat(JSON.stringify({
+          message: message,
+          request: request,
+          paths: paths
+        }, null, 4)));
+      }
     }; // Module._resolveFilename = () => {
     // 	Module._resolveFilename = resolveFilename
     // 	return filename
