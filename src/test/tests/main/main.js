@@ -66,7 +66,6 @@ describe('main > main', function () {
 		path.resolve(__dirname, './assets/xx/yy/module.js'),
 		path.resolve(__dirname, './assets/exist/dir/module.js'),
 		path.resolve(__dirname, './assets/exist/dir/cached-module.js'),
-		path.resolve(__dirname, './assets/exist/dir/not-standard-extension-module.qweqwe'),
 		path.resolve(__dirname, './assets/module.js/module.js/module.js'),
 		path.resolve(__dirname, mockFile),
 		path.resolve(__dirname, mockFileEs6)
@@ -81,12 +80,7 @@ describe('main > main', function () {
 
 	function testMockSingle(content, filePath, es6) {
 		const ext = path.extname(filePath)
-		let result
-		if (ext === '.js') {
-			result = requireFromString(content, filePath)
-		} else {
-			result = requireFromString(content, filePath, '.js')
-		}
+		const result = requireFromString(content, filePath)
 		checkResult(result, es6)
 	}
 
