@@ -71,7 +71,7 @@ describe('main > main', function () {
 	if (isWin) {
 		filePaths = filePaths.flatMap(o => [
 			o,
-			o.replace('/', '\\')
+			o.replace(/\//g, '\\')
 		])
 	}
 

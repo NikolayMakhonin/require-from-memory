@@ -70,7 +70,7 @@ describe('main > main', function () {
   let filePaths = [_path.default.resolve(__dirname, './assets/xx/yy/module.js'), _path.default.resolve(__dirname, './assets/module.js/module.js/module.js'), _path.default.resolve(__dirname, mockFile), _path.default.resolve(__dirname, mockFileEs6)];
 
   if (isWin) {
-    filePaths = filePaths.flatMap(o => [o, o.replace('/', '\\')]);
+    filePaths = filePaths.flatMap(o => [o, o.replace(/\//g, '\\')]);
   }
 
   function testMock(filePath) {

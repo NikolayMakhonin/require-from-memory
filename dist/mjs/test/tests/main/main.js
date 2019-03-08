@@ -90,7 +90,7 @@ describe('main > main', function () {
 
   if (isWin) {
     filePaths = filePaths.flatMap(function (o) {
-      return [o, o.replace('/', '\\')];
+      return [o, o.replace(/\//g, '\\')];
     });
   }
 
