@@ -3,6 +3,7 @@ import {requireFromString} from '../../../main/main'
 import path from 'path'
 import fs from 'fs'
 import 'core-js/fn/array/flat-map'
+import './assets/exist/dir/cached-module'
 
 describe('main > main', function () {
 	const mockFile = './assets/mock-dir/mock.dir/mock-module.js'
@@ -63,6 +64,8 @@ describe('main > main', function () {
 
 	let filePaths = [
 		path.resolve(__dirname, './assets/xx/yy/module.js'),
+		path.resolve(__dirname, './assets/exist/dir/module.js'),
+		path.resolve(__dirname, './assets/exist/dir/cached-module.js'),
 		path.resolve(__dirname, './assets/module.js/module.js/module.js'),
 		path.resolve(__dirname, mockFile),
 		path.resolve(__dirname, mockFileEs6)
@@ -76,9 +79,13 @@ describe('main > main', function () {
 	}
 
 	function testMock(filePath) {
+		require('./assets/exist/dir/cached-module')
+
 		console.log(`Test mock: ${filePath}`)
 		let result = requireFromString(mockContent, filePath)
 		checkResult(result)
+
+		require('./assets/exist/dir/cached-module')
 
 		console.log(`Test mock es6: ${filePath}`)
 		result = requireFromString(mockContentEs6, filePath)
