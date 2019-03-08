@@ -1,4 +1,1 @@
-/* eslint-disable */
-<><><><>
-This file should not be loaded
-<><><><>
+throw new Error('This file should not be loaded')

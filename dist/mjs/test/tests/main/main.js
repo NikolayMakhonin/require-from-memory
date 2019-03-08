@@ -6,6 +6,7 @@ import { requireFromString } from '../../../main/main';
 import path from 'path';
 import fs from 'fs';
 import 'core-js/fn/array/flat-map';
+import './assets/exist/dir/cached-module';
 describe('main > main', function () {
   var mockFile = './assets/mock-dir/mock.dir/mock-module.js';
   var mockFileEs6 = './assets/mock-dir/mock.dir/mock-module-es6.js';
@@ -86,7 +87,7 @@ describe('main > main', function () {
     assert.ok(subModule.mocha);
   }
 
-  var filePaths = [path.resolve(__dirname, './assets/xx/yy/module.js'), path.resolve(__dirname, './assets/module.js/module.js/module.js'), path.resolve(__dirname, mockFile), path.resolve(__dirname, mockFileEs6)];
+  var filePaths = [path.resolve(__dirname, './assets/xx/yy/module.js'), path.resolve(__dirname, './assets/exist/dir/module.js'), path.resolve(__dirname, './assets/exist/dir/cached-module.js'), path.resolve(__dirname, './assets/module.js/module.js/module.js'), path.resolve(__dirname, mockFile), path.resolve(__dirname, mockFileEs6)];
 
   if (isWin) {
     filePaths = filePaths.flatMap(function (o) {
@@ -94,13 +95,22 @@ describe('main > main', function () {
     });
   }
 
+  function testMockSingle(content, filePath, es6) {
+    var ext = path.extname(filePath);
+    var result = requireFromString(content, filePath);
+    checkResult(result, es6);
+  }
+
   function testMock(filePath) {
+    require('./assets/exist/dir/cached-module');
+
     console.log("Test mock: ".concat(filePath));
-    var result = requireFromString(mockContent, filePath);
-    checkResult(result);
+    testMockSingle(mockContent, filePath);
+
+    require('./assets/exist/dir/cached-module');
+
     console.log("Test mock es6: ".concat(filePath));
-    result = requireFromString(mockContentEs6, filePath);
-    checkResult(result, true);
+    testMockSingle(mockContentEs6, filePath, true);
   }
 
   it('require mock', function () {

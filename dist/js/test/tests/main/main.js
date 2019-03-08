@@ -10,6 +10,8 @@ var _fs = _interopRequireDefault(require("fs"));
 
 require("core-js/fn/array/flat-map");
 
+require("./assets/exist/dir/cached-module");
+
 /* eslint-disable global-require */
 describe('main > main', function () {
   const mockFile = './assets/mock-dir/mock.dir/mock-module.js';
@@ -67,19 +69,29 @@ describe('main > main', function () {
     assert.ok(subModule.mocha);
   }
 
-  let filePaths = [_path.default.resolve(__dirname, './assets/xx/yy/module.js'), _path.default.resolve(__dirname, './assets/module.js/module.js/module.js'), _path.default.resolve(__dirname, mockFile), _path.default.resolve(__dirname, mockFileEs6)];
+  let filePaths = [_path.default.resolve(__dirname, './assets/xx/yy/module.js'), _path.default.resolve(__dirname, './assets/exist/dir/module.js'), _path.default.resolve(__dirname, './assets/exist/dir/cached-module.js'), _path.default.resolve(__dirname, './assets/module.js/module.js/module.js'), _path.default.resolve(__dirname, mockFile), _path.default.resolve(__dirname, mockFileEs6)];
 
   if (isWin) {
     filePaths = filePaths.flatMap(o => [o, o.replace(/\//g, '\\')]);
   }
 
+  function testMockSingle(content, filePath, es6) {
+    const ext = _path.default.extname(filePath);
+
+    const result = (0, _main.requireFromString)(content, filePath);
+    checkResult(result, es6);
+  }
+
   function testMock(filePath) {
+    require('./assets/exist/dir/cached-module');
+
     console.log(`Test mock: ${filePath}`);
-    let result = (0, _main.requireFromString)(mockContent, filePath);
-    checkResult(result);
+    testMockSingle(mockContent, filePath);
+
+    require('./assets/exist/dir/cached-module');
+
     console.log(`Test mock es6: ${filePath}`);
-    result = (0, _main.requireFromString)(mockContentEs6, filePath);
-    checkResult(result, true);
+    testMockSingle(mockContentEs6, filePath, true);
   }
 
   it('require mock', function () {
