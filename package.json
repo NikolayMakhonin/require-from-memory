@@ -1,7 +1,7 @@
 {
   "name": "require-from-memory",
-  "version": "0.0.1",
-  "description": "NodeJs require with mock content and file name and support babel, pirates, etc",
+  "version": "1.0.0",
+  "description": "NodeJs \"require\" with mock content and file name and supports babel, pirates, etc",
   "author": "Nikolay Makhonin",
   "homepage": "https://github.com/NikolayMakhonin/require-from-memory",
   "bugs": {

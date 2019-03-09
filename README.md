@@ -30,10 +30,10 @@ const myModule = requireFromString(
 [npm-url]: https://npmjs.org/package/require-from-memory
 [node-version-image]: https://img.shields.io/node/v/require-from-memory.svg
 [node-version-url]: https://nodejs.org/en/download/
-[travis-image]: https://travis-ci.org/NikolayMakhonin/require-from-memory.svg?branch=helpers
-[travis-url]: https://travis-ci.org/NikolayMakhonin/require-from-memory?branch=helpers
-[coveralls-image]: https://coveralls.io/repos/github/NikolayMakhonin/require-from-memory/badge.svg?branch=helpers
-[coveralls-url]: https://coveralls.io/github/NikolayMakhonin/require-from-memory?branch=helpers
+[travis-image]: https://travis-ci.org/NikolayMakhonin/require-from-memory.svg
+[travis-url]: https://travis-ci.org/NikolayMakhonin/require-from-memory
+[coveralls-image]: https://coveralls.io/repos/github/NikolayMakhonin/require-from-memory/badge.svg
+[coveralls-url]: https://coveralls.io/github/NikolayMakhonin/require-from-memory
 [downloads-image]: https://img.shields.io/npm/dm/require-from-memory.svg
 [downloads-url]: https://npmjs.org/package/require-from-memory
 [npm-url]: https://npmjs.org/package/require-from-memory
