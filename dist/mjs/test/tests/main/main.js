@@ -5,7 +5,6 @@ import _asyncToGenerator from "@babel/runtime/helpers/asyncToGenerator";
 import { requireFromString } from '../../../main/main';
 import path from 'path';
 import fs from 'fs';
-import 'core-js/fn/array/flat-map';
 import './assets/exist/dir/cached-module';
 describe('main > main', function () {
   var mockFile = './assets/mock-dir/mock.dir/mock-module.js';
@@ -96,9 +95,11 @@ describe('main > main', function () {
   var filePaths = [path.resolve(__dirname, './assets/xx/yy/module.js'), path.resolve(__dirname, './assets/exist/dir/module.js'), path.resolve(__dirname, './assets/exist/dir/cached-module.js'), path.resolve(__dirname, './assets/module.js/module.js/module.js'), path.resolve(__dirname, mockFile), path.resolve(__dirname, mockFileEs6)];
 
   if (isWin) {
-    filePaths = filePaths.flatMap(function (o) {
-      return [o, o.replace(/\//g, '\\')];
-    });
+    // flatMap
+    filePaths = filePaths.reduce(function (a, b) {
+      a.push(b, b.replace(/\//g, '\\'));
+      return a;
+    }, []);
   }
 
   function testMockSingle(content, filePath, es6) {

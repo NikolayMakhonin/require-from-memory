@@ -77,10 +77,14 @@ describe('main > main', function () {
 	]
 
 	if (isWin) {
-		filePaths = filePaths.flatMap(o => [
-			o,
-			o.replace(/\//g, '\\')
-		])
+		// flatMap
+		filePaths = filePaths.reduce((a, b) => {
+			a.push(
+				b,
+				b.replace(/\//g, '\\')
+			)
+			return a
+		}, [])
 	}
 
 	function testMockSingle(content, filePath, es6) {
