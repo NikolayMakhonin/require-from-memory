@@ -1,6 +1,6 @@
 {
   "name": "require-from-memory",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "NodeJs \"require\" with mock content and file name and supports babel, pirates, etc",
   "author": "Nikolay Makhonin",
   "homepage": "https://github.com/NikolayMakhonin/require-from-memory",
@@ -93,7 +93,6 @@
     "shx": "^0.3.2"
   },
   "dependencies": {
-    "@babel/runtime": "^7.5.5",
-    "core-js": "^2.6.9"
+    "@babel/runtime": "^7.5.5"
   }
 }
