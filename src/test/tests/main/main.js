@@ -2,7 +2,6 @@
 import {requireFromString} from '../../../main/main'
 import path from 'path'
 import fs from 'fs'
-import 'core-js/fn/array/flat-map'
 import './assets/exist/dir/cached-module'
 
 describe('main > main', function () {
