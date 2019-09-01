@@ -18,8 +18,27 @@ import {requireFromString} from 'require-from-memory'
 
 const myModule = requireFromString(
     'export default { ... }', 
-    'fake/path/my-module.js'
+    'fake/path/my-module.js',
+    options, // optional
 ) 
+
+/*
+options: {
+    logFilter(logEvent): boolean // return false to prevent show log
+}
+
+logEvent: {
+    level: 'INFO' | 'WARNING' | 'ERROR',
+    type: 'FindPath',
+    message,
+    filename,
+    code,
+    vars: {
+        // additional info
+    },
+    exception,
+}
+*/
 ```
 
 # License

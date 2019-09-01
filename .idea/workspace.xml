@@ -1,1 +1,139 @@
-<?xml version="1.0" encoding="UTF-8"?><project version="4"><component name="ChangeListManager"><ignored path=".idea/"/><ignored path="$PROJECT_DIR$/node_modules/"/><ignored path="$PROJECT_DIR$/.tmp/"/><ignored path="$PROJECT_DIR$/temp/"/><ignored path="$PROJECT_DIR$/tmp/"/><option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true"/><option name="SHOW_DIALOG" value="false"/><option name="HIGHLIGHT_CONFLICTS" value="true"/><option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false"/><option name="LAST_RESOLUTION" value="IGNORE"/></component><component name="ProjectLevelVcsManager"><ConfirmationsSetting value="2" id="Add"/></component><component name="PropertiesComponent"><property name="NewWatcherDialog.advanced.open" value="true"/><property name="WebServerToolWindowFactoryState" value="false"/><property name="auto.test.manager.delay" value="5000"/><property name="node.js.detected.package.eslint" value="true"/><property name="node.js.detected.package.standard" value="true"/><property name="node.js.path.for.package.eslint" value="$Node2$/node"/><property name="node.js.path.for.package.standard" value="$Node2$/node"/><property name="node.js.selected.package.eslint" value="L:\Work\_GIT\GitHub\NodeJs\templates\nodejs-templates\node_modules\eslint"/><property name="node.js.selected.package.standard" value="L:\Work\_GIT\GitHub\NodeJs\templates\nodejs-templates\node_modules\eslint"/><property name="nodejs.mocha.mocha_node_package_dir" value="$PROJECT_DIR$/node_modules/mocha"/><property name="nodejs_package_manager_path" value="npm"/><property name="restartRequiresConfirmation" value="false"/><property name="settings.editor.selected.configurable" value="preferences.pluginManager"/></component><component name="RunManager" selected="Mocha.Coverage Mocha"><configuration default="true" type="JavaScriptTestRunnerKarma"><config-file value="$PROJECT_DIR$/env/karma.conf.tests.js"/><karma-package-dir value="$PROJECT_DIR$/node_modules/karma"/><node-interpreter value="$Node2$/node"/><envs/><method v="2"/></configuration><configuration default="true" type="NodeJSConfigurationType" path-to-node="$Node2$/node" node-parameters="--max-old-space-size=4096" working-dir="$PROJECT_DIR$"><method v="2"/></configuration><configuration name="Intern" type="mocha-javascript-test-runner"><node-interpreter>$Node2$/node</node-interpreter><node-options>--max-old-space-size=4096</node-options><mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package><working-directory>$PROJECT_DIR$</working-directory><pass-parent-env>true</pass-parent-env><ui>bdd</ui><extra-mocha-options>--opts ./env/mocha/mocha.babel.opts</extra-mocha-options><test-kind>PATTERN</test-kind><test-pattern>./env/intern/intern-mocha.js</test-pattern><method v="2"/></configuration><configuration default="true" type="mocha-javascript-test-runner"><node-interpreter>$Node2$/node</node-interpreter><node-options>--max-old-space-size=4096</node-options><mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package><working-directory>$PROJECT_DIR$</working-directory><pass-parent-env>true</pass-parent-env><ui>bdd</ui><extra-mocha-options>--opts ./env/mocha/mocha.babel.opts --watch</extra-mocha-options><test-kind>PATTERN</test-kind><test-pattern>./src/test/tests/{common,node}/**/*.*</test-pattern><method v="2"/></configuration><list><item itemvalue="Mocha.Coverage Mocha"/><item itemvalue="Mocha.Watch Mocha"/><item itemvalue="Mocha.Intern"/></list></component></project>
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+	<component name="ChangeListManager">
+		<option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true"/>
+		<option name="SHOW_DIALOG" value="false"/>
+		<option name="HIGHLIGHT_CONFLICTS" value="true"/>
+		<option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false"/>
+		<option name="LAST_RESOLUTION" value="IGNORE"/>
+	</component>
+	<component name="Git.Settings">
+		<option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$"/>
+	</component>
+	<component name="JsBowerSettings">
+		<node-interpreter value="project"/>
+		<bower-package value="$USER_HOME$/AppData/Roaming/npm/node_modules/bower"/>
+		<bower.json value=""/>
+	</component>
+	<component name="JsFlowSettings">
+		<service-enabled>true</service-enabled>
+		<exe-path/>
+		<other-services-enabled>true</other-services-enabled>
+		<auto-save>true</auto-save>
+	</component>
+	<component name="ProjectId" id="1QEj2yzScz4vV2LQ17gLvQtgRCe"/>
+	<component name="ProjectLevelVcsManager">
+		<ConfirmationsSetting value="2" id="Add"/>
+	</component>
+	<component name="PropertiesComponent">
+		<property name="NewWatcherDialog.advanced.open" value="true"/>
+		<property name="WebServerToolWindowFactoryState" value="false"/>
+		<property name="auto.test.manager.delay" value="5000"/>
+		<property name="javascript.karma.karma_node_package_dir" value=""/>
+		<property name="last_opened_file_path" value="$PROJECT_DIR$"/>
+		<property name="node.js.detected.package.eslint" value="true"/>
+		<property name="node.js.detected.package.jscs" value="true"/>
+		<property name="node.js.detected.package.standard" value="true"/>
+		<property name="node.js.detected.package.stylelint" value="true"/>
+		<property name="node.js.detected.package.tslint" value="true"/>
+		<property name="node.js.path.for.package.eslint" value="node"/>
+		<property name="node.js.path.for.package.jscs" value="project"/>
+		<property name="node.js.path.for.package.standard" value="$Node2$/node"/>
+		<property name="node.js.path.for.package.stylelint" value="project"/>
+		<property name="node.js.path.for.package.tslint" value="project"/>
+		<property name="node.js.selected.package.eslint" value="$PROJECT_DIR$/../../templates/nodejs-templates/node_modules/eslint"/>
+		<property name="node.js.selected.package.jscs" value=""/>
+		<property name="node.js.selected.package.standard" value="$PROJECT_DIR$/../../templates/nodejs-templates/node_modules/eslint"/>
+		<property name="node.js.selected.package.stylelint" value=""/>
+		<property name="node.js.selected.package.tslint" value="(autodetect)"/>
+		<property name="nodejs.jest.jest_package" value=""/>
+		<property name="nodejs.mocha.mocha_node_package_dir" value="$PROJECT_DIR$/node_modules/mocha"/>
+		<property name="nodejs_package_manager_path" value="npm"/>
+		<property name="restartRequiresConfirmation" value="false"/>
+		<property name="settings.editor.selected.configurable" value="preferences.pluginManager"/>
+	</component>
+	<component name="RunManager" selected="Mocha.Coverage Mocha">
+		<configuration default="true" type="JavaScriptTestRunnerKarma">
+			<config-file value=""/>
+			<node-interpreter value="node"/>
+			<envs/>
+			<method v="2"/>
+		</configuration>
+		<configuration default="true" type="NodeJSConfigurationType" path-to-node="node" node-parameters="--max-old-space-size=4096" working-dir="$PROJECT_DIR$">
+			<method v="2"/>
+		</configuration>
+		<configuration name="Intern" type="mocha-javascript-test-runner">
+			<node-interpreter>node</node-interpreter>
+			<node-options>--max-old-space-size=4096</node-options>
+			<mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
+			<working-directory>$PROJECT_DIR$</working-directory>
+			<pass-parent-env>true</pass-parent-env>
+			<ui>bdd</ui>
+			<extra-mocha-options>--opts ./env/mocha/mocha.babel.opts</extra-mocha-options>
+			<test-kind>PATTERN</test-kind>
+			<test-pattern>./env/intern/intern-mocha.js</test-pattern>
+			<method v="2"/>
+		</configuration>
+		<configuration default="true" type="mocha-javascript-test-runner">
+			<node-interpreter>node</node-interpreter>
+			<node-options>--max-old-space-size=4096</node-options>
+			<mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
+			<working-directory>$PROJECT_DIR$</working-directory>
+			<pass-parent-env>true</pass-parent-env>
+			<ui>bdd</ui>
+			<extra-mocha-options>--opts ./env/mocha/mocha.babel.opts --watch</extra-mocha-options>
+			<test-kind>PATTERN</test-kind>
+			<test-pattern>./src/test/tests/{common,node}/**/*.*</test-pattern>
+			<method v="2"/>
+		</configuration>
+		<configuration name="main > main.require mock" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
+			<node-interpreter>node</node-interpreter>
+			<node-options>--max-old-space-size=4096</node-options>
+			<mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
+			<working-directory>$PROJECT_DIR$</working-directory>
+			<pass-parent-env>true</pass-parent-env>
+			<ui>bdd</ui>
+			<extra-mocha-options>--opts ./env/mocha/mocha.babel.opts</extra-mocha-options>
+			<test-kind>TEST</test-kind>
+			<test-file>$PROJECT_DIR$/src/test/tests/main/main.js</test-file>
+			<test-names>
+				<name value="main > main"/>
+				<name value="require mock"/>
+			</test-names>
+			<method v="2"/>
+		</configuration>
+		<list>
+			<item itemvalue="Mocha.Coverage Mocha"/>
+			<item itemvalue="Mocha.Watch Mocha"/>
+			<item itemvalue="Mocha.Intern"/>
+			<item itemvalue="Mocha.main > main.require mock"/>
+		</list>
+		<recent_temporary>
+			<list>
+				<item itemvalue="Mocha.main > main.require mock"/>
+			</list>
+		</recent_temporary>
+	</component>
+	<component name="Vcs.Log.Tabs.Properties">
+		<option name="TAB_STATES">
+			<map>
+				<entry key="MAIN">
+					<value>
+						<State>
+							<option name="COLUMN_ORDER"/>
+						</State>
+					</value>
+				</entry>
+			</map>
+		</option>
+	</component>
+	<component name="VcsManagerConfiguration">
+		<option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false"/>
+		<option name="CHECK_NEW_TODO" value="false"/>
+		<option name="LAST_COMMIT_MESSAGE" value="v1.0.0"/>
+		<MESSAGE value="Improved tests"/>
+		<MESSAGE value="Rollback last commit"/>
+		<MESSAGE value="Fix tests"/>
+		<MESSAGE value="v1.0.0"/>
+	</component>
+</project>

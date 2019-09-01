@@ -20,7 +20,11 @@ function isRelativePath(requirePath) {
 // see also: https://stackoverflow.com/a/19682189/5221762
 // see also: https://github.com/floatdrop/require-from-string/blob/master/index.js
 // see also: https://github.com/ariporad/pirates/blob/master/src/index.js
-export function requireFromString(code, filename) {
+export function requireFromString(code, filename, options) {
+	const {
+		logFilter,
+	} = options || {}
+
 	if (!filename) {
 		filename = ''
 	}
@@ -82,16 +86,52 @@ export function requireFromString(code, filename) {
 			try {
 				const filePath = findPath.apply(fs, [request, paths, ...others])
 				if (!filePath) {
-					showErrorInfo(`Found filePath == ${filePath}`)
+					showErrorInfo('WARNING', 'FindPath', `Found filePath == ${filePath}`)
 				}
 				return filePath
 			} catch (ex) {
-				showErrorInfo(ex.message)
+				showErrorInfo('ERROR', 'FindPath', ex.message, ex)
 				throw ex
 			}
 
-			function showErrorInfo(message) {
-				console.error(`Error in Module._findPath, input params:\r\n${JSON.stringify({message, request, paths}, null, 4)}`)
+			function showErrorInfo(level, type, message, exception) {
+				const logEvent = {
+					level,
+					type,
+					message,
+					filename,
+					code,
+					vars: {
+						request,
+						paths,
+						others,
+					},
+					exception,
+				}
+
+				if (logFilter && !logFilter(logEvent)) {
+					return
+				}
+
+				delete logEvent.code
+				if (logEvent.vars) {
+					delete logEvent.vars.paths
+					delete logEvent.vars.others
+				}
+
+				const logStr = 'Error in requireFromString:\n'
+
+				switch (logEvent.level) {
+					case 'INFO':
+						console.log(logStr, logEvent, '\n')
+						break
+					case 'WARNING':
+						console.warn(logStr, logEvent, '\n')
+						break
+					default:
+						console.error(logStr, logEvent, '\n')
+						break
+				}
 			}
 		}
 
@@ -100,13 +140,13 @@ export function requireFromString(code, filename) {
 		// 	return filename
 		// }
 
-		fs.readFileSync = (fname, options, ...other) => {
+		fs.readFileSync = (fname, opts, ...other) => {
 			if (fname === filename) {
-				return typeof options === 'string'
+				return typeof opts === 'string'
 					? code
 					: getBuffer()
 			}
-			return readFileSync.apply(fs, [fname, options, ...other])
+			return readFileSync.apply(fs, [fname, opts, ...other])
 		}
 
 		fs.statSync = (fname, ...other) => {

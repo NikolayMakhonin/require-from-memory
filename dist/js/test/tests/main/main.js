@@ -19,6 +19,13 @@ describe('main > main', function () {
   let mockContent;
   let mockContentEs6;
   const isWin = process.platform === 'win32';
+  const options = {
+    logFilter(logEvent) {
+      assert.fail(JSON.stringify(logEvent, null, 4));
+      return false;
+    }
+
+  };
 
   function readContent(filePath) {
     return new Promise((resolve, reject) => _fs.default.readFile(_path.default.resolve(__dirname, filePath), function read(err, data) {
@@ -78,7 +85,7 @@ describe('main > main', function () {
   function testMockSingle(content, filePath, es6) {
     const ext = _path.default.extname(filePath);
 
-    const result = (0, _main.requireFromString)(content, filePath);
+    const result = (0, _main.requireFromString)(content, filePath, options);
     checkResult(result, es6);
   }
 
@@ -107,7 +114,7 @@ describe('main > main', function () {
     checkResult(result, true);
   });
   it('errors', function () {
-    (0, _main.requireFromString)('', null);
-    assert.throws(() => (0, _main.requireFromString)('', true), Error);
+    (0, _main.requireFromString)('', null, options);
+    assert.throws(() => (0, _main.requireFromString)('', true, options), Error);
   });
 });

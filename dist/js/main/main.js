@@ -27,7 +27,11 @@ function isRelativePath(requirePath) {
 // see also: https://github.com/ariporad/pirates/blob/master/src/index.js
 
 
-function requireFromString(code, filename) {
+function requireFromString(code, filename, options) {
+  const {
+    logFilter
+  } = options || {};
+
   if (!filename) {
     filename = '';
   }
@@ -92,21 +96,56 @@ function requireFromString(code, filename) {
         const filePath = findPath.apply(_fs.default, [request, paths, ...others]);
 
         if (!filePath) {
-          showErrorInfo(`Found filePath == ${filePath}`);
+          showErrorInfo('WARNING', 'FindPath', `Found filePath == ${filePath}`);
         }
 
         return filePath;
       } catch (ex) {
-        showErrorInfo(ex.message);
+        showErrorInfo('ERROR', 'FindPath', ex.message, ex);
         throw ex;
       }
 
-      function showErrorInfo(message) {
-        console.error(`Error in Module._findPath, input params:\r\n${JSON.stringify({
+      function showErrorInfo(level, type, message, exception) {
+        const logEvent = {
+          level,
+          type,
           message,
-          request,
-          paths
-        }, null, 4)}`);
+          filename,
+          code,
+          vars: {
+            request,
+            paths,
+            others
+          },
+          exception
+        };
+
+        if (logFilter && !logFilter(logEvent)) {
+          return;
+        }
+
+        delete logEvent.code;
+
+        if (logEvent.vars) {
+          delete logEvent.vars.paths;
+          delete logEvent.vars.others;
+        }
+
+        const logStr = 'Error in requireFromString:\n';
+
+        switch (logEvent.level) {
+          case 'INFO':
+            console.log(logStr, logEvent, '\n');
+            break;
+
+          case 'WARNING':
+            console.warn(logStr, logEvent, '\n');
+            break;
+
+          default:
+            console.error(logStr, logEvent, '\n');
+            break;
+        }
       }
     }; // Module._resolveFilename = () => {
     // 	Module._resolveFilename = resolveFilename
@@ -114,12 +153,12 @@ function requireFromString(code, filename) {
     // }
 
 
-    _fs.default.readFileSync = (fname, options, ...other) => {
+    _fs.default.readFileSync = (fname, opts, ...other) => {
       if (fname === filename) {
-        return typeof options === 'string' ? code : getBuffer();
+        return typeof opts === 'string' ? code : getBuffer();
       }
 
-      return readFileSync.apply(_fs.default, [fname, options, ...other]);
+      return readFileSync.apply(_fs.default, [fname, opts, ...other]);
     };
 
     _fs.default.statSync = (fname, ...other) => {

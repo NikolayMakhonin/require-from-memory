@@ -11,6 +11,12 @@ describe('main > main', function () {
 	let mockContent
 	let mockContentEs6
 	const isWin = process.platform === 'win32'
+	const options = {
+		logFilter(logEvent) {
+			assert.fail(JSON.stringify(logEvent, null, 4))
+			return false
+		}
+	}
 
 	function readContent(filePath) {
 		return new Promise((resolve, reject) => fs.readFile(
@@ -80,7 +86,7 @@ describe('main > main', function () {
 
 	function testMockSingle(content, filePath, es6) {
 		const ext = path.extname(filePath)
-		const result = requireFromString(content, filePath)
+		const result = requireFromString(content, filePath, options)
 		checkResult(result, es6)
 	}
 
@@ -110,7 +116,7 @@ describe('main > main', function () {
 	})
 
 	it('errors', function () {
-		requireFromString('', null)
-		assert.throws(() => requireFromString('', true), Error)
+		requireFromString('', null, options)
+		assert.throws(() => requireFromString('', true, options), Error)
 	})
 })

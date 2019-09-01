@@ -13,6 +13,12 @@ describe('main > main', function () {
   var mockContent;
   var mockContentEs6;
   var isWin = process.platform === 'win32';
+  var options = {
+    logFilter: function logFilter(logEvent) {
+      assert.fail(JSON.stringify(logEvent, null, 4));
+      return false;
+    }
+  };
 
   function readContent(filePath) {
     return new Promise(function (resolve, reject) {
@@ -61,7 +67,7 @@ describe('main > main', function () {
 
     if (es6) {
       assert.ok(result.__esModule);
-      result = result.default;
+      result = result["default"];
     }
 
     assert.ok(result.random);
@@ -79,7 +85,7 @@ describe('main > main', function () {
 
     if (!es6) {
       assert.ok(subModule.__esModule);
-      subModule = subModule.default;
+      subModule = subModule["default"];
     }
 
     assert.strictEqual(subModule.assert, assert);
@@ -97,7 +103,7 @@ describe('main > main', function () {
 
   function testMockSingle(content, filePath, es6) {
     var ext = path.extname(filePath);
-    var result = requireFromString(content, filePath);
+    var result = requireFromString(content, filePath, options);
     checkResult(result, es6);
   }
 
@@ -128,8 +134,8 @@ describe('main > main', function () {
       _iteratorError = err;
     } finally {
       try {
-        if (!_iteratorNormalCompletion && _iterator.return != null) {
-          _iterator.return();
+        if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+          _iterator["return"]();
         }
       } finally {
         if (_didIteratorError) {
@@ -146,9 +152,9 @@ describe('main > main', function () {
     checkResult(result, true);
   });
   it('errors', function () {
-    requireFromString('', null);
-    assert.throws(function () {
-      return requireFromString('', true);
+    requireFromString('', null, options);
+    assert["throws"](function () {
+      return requireFromString('', true, options);
     }, Error);
   });
 });

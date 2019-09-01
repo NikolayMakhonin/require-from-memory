@@ -14,7 +14,10 @@ function isRelativePath(requirePath) {
 // see also: https://github.com/ariporad/pirates/blob/master/src/index.js
 
 
-export function requireFromString(code, filename) {
+export function requireFromString(code, filename, options) {
+  var _ref = options || {},
+      logFilter = _ref.logFilter;
+
   if (!filename) {
     filename = '';
   }
@@ -61,6 +64,10 @@ export function requireFromString(code, filename) {
 
   try {
     Module._findPath = function (request, paths) {
+      for (var _len = arguments.length, others = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+        others[_key - 2] = arguments[_key];
+      }
+
       if (request === filename) {
         return filename;
       }
@@ -75,28 +82,59 @@ export function requireFromString(code, filename) {
       }
 
       try {
-        for (var _len = arguments.length, others = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
-          others[_key - 2] = arguments[_key];
-        }
-
         var filePath = findPath.apply(fs, [request, paths].concat(others));
 
         if (!filePath) {
-          showErrorInfo("Found filePath == ".concat(filePath));
+          showErrorInfo('WARNING', 'FindPath', "Found filePath == ".concat(filePath));
         }
 
         return filePath;
       } catch (ex) {
-        showErrorInfo(ex.message);
+        showErrorInfo('ERROR', 'FindPath', ex.message, ex);
         throw ex;
       }
 
-      function showErrorInfo(message) {
-        console.error("Error in Module._findPath, input params:\r\n".concat(JSON.stringify({
+      function showErrorInfo(level, type, message, exception) {
+        var logEvent = {
+          level: level,
+          type: type,
           message: message,
-          request: request,
-          paths: paths
-        }, null, 4)));
+          filename: filename,
+          code: code,
+          vars: {
+            request: request,
+            paths: paths,
+            others: others
+          },
+          exception: exception
+        };
+
+        if (logFilter && !logFilter(logEvent)) {
+          return;
+        }
+
+        delete logEvent.code;
+
+        if (logEvent.vars) {
+          delete logEvent.vars.paths;
+          delete logEvent.vars.others;
+        }
+
+        var logStr = 'Error in requireFromString:\n';
+
+        switch (logEvent.level) {
+          case 'INFO':
+            console.log(logStr, logEvent, '\n');
+            break;
+
+          case 'WARNING':
+            console.warn(logStr, logEvent, '\n');
+            break;
+
+          default:
+            console.error(logStr, logEvent, '\n');
+            break;
+        }
       }
     }; // Module._resolveFilename = () => {
     // 	Module._resolveFilename = resolveFilename
@@ -104,16 +142,16 @@ export function requireFromString(code, filename) {
     // }
 
 
-    fs.readFileSync = function (fname, options) {
+    fs.readFileSync = function (fname, opts) {
       if (fname === filename) {
-        return typeof options === 'string' ? code : getBuffer();
+        return typeof opts === 'string' ? code : getBuffer();
       }
 
       for (var _len2 = arguments.length, other = new Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
         other[_key2 - 2] = arguments[_key2];
       }
 
-      return readFileSync.apply(fs, [fname, options].concat(other));
+      return readFileSync.apply(fs, [fname, opts].concat(other));
     };
 
     fs.statSync = function (fname) {
